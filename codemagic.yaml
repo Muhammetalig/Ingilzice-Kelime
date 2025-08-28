@@ -44,17 +44,17 @@ workflows:
            </dict>
            </plist>
            EOF
-             - name: Flutter build ipa
-         script: |
-            flutter build ipa \
-              --release \
-              --export-options-plist=/tmp/exportOptions.plist
+      - name: Flutter build ipa
+        script: |
+          flutter build ipa \
+            --release \
+            --export-options-plist=/tmp/exportOptions.plist
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-         publishing:
-       app_store_connect:
+    publishing:
+      app_store_connect:
          api_key: $APP_STORE_CONNECT_API_KEY
          key_id: $APP_STORE_CONNECT_API_KEY_ID
          issuer_id: $APP_STORE_CONNECT_ISSUER_ID
