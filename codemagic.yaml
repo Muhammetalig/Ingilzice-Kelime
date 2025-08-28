@@ -9,32 +9,27 @@ workflows:
         XCODE_PROJECT: "ios/Runner.xcworkspace"
         XCODE_SCHEME: "Runner"
         BUNDLE_ID: "com.example.englishwithgames"
-        CERTIFICATE_PASSWORD: $CM_CERTIFICATE_PASSWORD
-        KEYCHAIN_PASSWORD: $CM_KEYCHAIN_PASSWORD
-        APP_STORE_CONNECT_ISSUER_ID: $CM_APP_STORE_CONNECT_ISSUER_ID
-        APP_STORE_CONNECT_API_KEY_ID: $CM_APP_STORE_CONNECT_API_KEY_ID
-        APP_STORE_CONNECT_API_KEY: $CM_APP_STORE_CONNECT_API_KEY
         TEAM_ID: $CM_TEAM_ID
     scripts:
       - name: Set up code signing settings
         script: |
           echo "Using automatic code signing with Team ID: $TEAM_ID"
           echo "Bundle ID: $BUNDLE_ID"
-             - name: Get Flutter packages
-         script: flutter pub get
-       - name: Create export options plist
-         script: |
-           echo "Skipping export options for no-codesign build"
-       - name: Flutter build ipa
-         script: |
-           flutter build ipa \
-             --release \
-             --no-codesign
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Create export options plist
+        script: |
+          echo "Skipping export options for no-codesign build"
+      - name: Flutter build ipa
+        script: |
+          flutter build ipa \
+            --release \
+            --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-             # Publishing disabled - focus on building IPA first
+    # Publishing disabled - focus on building IPA first
 
   android-workflow:
     name: Android Workflow
