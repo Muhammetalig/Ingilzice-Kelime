@@ -7,12 +7,12 @@ Bu klasöre aşağıdaki provisioning profil dosyalarını yerleştirin:
 ### 1. App Store Distribution Profile
 - **Dosya:** `distribution.mobileprovision`
 - **Açıklama:** App Store dağıtımı için profil
-- **Bundle ID:** com.example.englishwithgames (veya kendi bundle ID'niz)
+- **Bundle ID:** com.example.ings (veya kendi bundle ID'niz)
 
 ### 2. Development Profile
 - **Dosya:** `development.mobileprovision`
 - **Açıklama:** Geliştirme için profil
-- **Bundle ID:** com.example.englishwithgames (veya kendi bundle ID'niz)
+- **Bundle ID:** com.example.ings (veya kendi bundle ID'niz)
 
 ## Profil Oluşturma Adımları
 

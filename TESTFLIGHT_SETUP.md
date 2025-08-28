@@ -18,9 +18,9 @@
 #### App Store Connect'te:
 1. **App oluşturun:**
    - App Store Connect > My Apps > + > New App
-   - Bundle ID: `com.example.englishwithgames` (veya kendi bundle ID'niz)
+   - Bundle ID: `com.example.ings` (veya kendi bundle ID'niz)
    - Platform: iOS
-   - Name: English with Games
+   - Name: Ings
 
 2. **Sertifikalar oluşturun:**
    - Certificates, Identifiers & Profiles > Certificates

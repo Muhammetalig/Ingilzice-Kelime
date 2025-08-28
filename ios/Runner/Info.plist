@@ -5,15 +5,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>English with Games</string>
+	<string>Ings</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.example.englishwithgames</string>
+			<string>com.example.ings</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>englishwithgames</string>
+				<string>ings</string>
 			</array>
 		</dict>
 	</array>
@@ -24,7 +24,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>English with Games</string>
+	<string>ings</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
