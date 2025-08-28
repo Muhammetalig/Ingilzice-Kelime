@@ -30,9 +30,11 @@ workflows:
            <plist version="1.0">
            <dict>
                <key>method</key>
-               <string>development</string>
+               <string>app-store</string>
                <key>teamID</key>
                <string>$TEAM_ID</string>
+               <key>signingStyle</key>
+               <string>automatic</string>
                <key>uploadBitcode</key>
                <false/>
                <key>uploadSymbols</key>
@@ -42,17 +44,22 @@ workflows:
            </dict>
            </plist>
            EOF
-      - name: Flutter build ipa
-        script: |
-           flutter build ipa \
-             --release \
-             --export-options-plist=/tmp/exportOptions.plist \
-             --no-codesign
+             - name: Flutter build ipa
+         script: |
+            flutter build ipa \
+              --release \
+              --export-options-plist=/tmp/exportOptions.plist
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-    # Publishing disabled for now - focus on building first
+         publishing:
+       app_store_connect:
+         api_key: $APP_STORE_CONNECT_API_KEY
+         key_id: $APP_STORE_CONNECT_API_KEY_ID
+         issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+         submit_to_testflight: true
+         submit_to_app_store: false
 
   android-workflow:
     name: Android Workflow
