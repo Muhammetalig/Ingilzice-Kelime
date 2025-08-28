@@ -17,26 +17,8 @@ workflows:
     scripts:
       - name: Set up code signing settings
         script: |
-          keychain_name="codemagic.keychain"
-          keychain_password="$KEYCHAIN_PASSWORD"
-          
-          # Create temporary keychain
-          security create-keychain -p "$keychain_password" "$keychain_name"
-          security list-keychains -s "$keychain_name"
-          security default-keychain -s "$keychain_name"
-          security unlock-keychain -p "$keychain_password" "$keychain_name"
-          security set-keychain-settings -t 3600 -l ~/Library/Keychains/"$keychain_name"
-          
-          # Import certificates
-          security import "ios/certs/distribution.p12" -k "$keychain_name" -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          security import "ios/certs/development.p12" -k "$keychain_name" -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          
-          # Add provisioning profiles
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp ios/profiles/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-          
-          # Set partition list
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$keychain_password" "$keychain_name"
+          echo "Using automatic code signing with Team ID: $TEAM_ID"
+          echo "Bundle ID: $BUNDLE_ID"
       - name: Get Flutter packages
         script: flutter pub get
       - name: Create export options plist
