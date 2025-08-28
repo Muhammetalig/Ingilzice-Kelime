@@ -89,8 +89,6 @@ workflows:
     name: Android Workflow
     environment:
       flutter: stable
-      android_signing:
-        - keystore_reference
       vars:
         PACKAGE_NAME: "com.example.englishwithgames"
     scripts:
@@ -104,7 +102,3 @@ workflows:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
-    publishing:
-      google_play:
-        track: internal
-        submit_as_draft: true
