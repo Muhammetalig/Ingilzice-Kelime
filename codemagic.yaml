@@ -39,22 +39,22 @@ workflows:
            </dict>
            </plist>
            EOF
-       - name: Flutter build ipa
-         script: |
-           flutter build ipa \
-             --release \
-             --export-options-plist=/tmp/exportOptions.plist
+                         - name: Flutter build ipa
+                    script: |
+                      flutter build ipa \
+                        --release \
+                        --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-         publishing:
-       app_store_connect:
-         api_key: $CM_APP_STORE_CONNECT_API_KEY
-         key_id: $CM_APP_STORE_CONNECT_API_KEY_ID
-         issuer_id: $CM_APP_STORE_CONNECT_ISSUER_ID
-         submit_to_testflight: true
-         submit_to_app_store: false
+                         # publishing:
+                #   app_store_connect:
+                #     api_key: $CM_APP_STORE_CONNECT_API_KEY
+                #     key_id: $CM_APP_STORE_CONNECT_API_KEY_ID
+                #     issuer_id: $CM_APP_STORE_CONNECT_ISSUER_ID
+                #     submit_to_testflight: true
+                #     submit_to_app_store: false
 
   android-workflow:
     name: Android Workflow
