@@ -17,44 +17,44 @@ workflows:
           echo "Bundle ID: $BUNDLE_ID"
       - name: Get Flutter packages
         script: flutter pub get
-             - name: Create export options plist
-         script: |
-           cat > /tmp/exportOptions.plist << EOF
-           <?xml version="1.0" encoding="UTF-8"?>
-           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-           <plist version="1.0">
-           <dict>
-               <key>method</key>
-               <string>app-store</string>
-               <key>teamID</key>
-               <string>$TEAM_ID</string>
-               <key>signingStyle</key>
-               <string>automatic</string>
-               <key>uploadBitcode</key>
-               <false/>
-               <key>uploadSymbols</key>
-               <true/>
-               <key>compileBitcode</key>
-               <false/>
-           </dict>
-           </plist>
-           EOF
-                         - name: Flutter build ipa
-                    script: |
-                      flutter build ipa \
-                        --release \
-                        --no-codesign
+      - name: Create export options plist
+        script: |
+          cat > /tmp/exportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>$TEAM_ID</string>
+              <key>signingStyle</key>
+              <string>automatic</string>
+              <key>uploadBitcode</key>
+              <false/>
+              <key>uploadSymbols</key>
+              <true/>
+              <key>compileBitcode</key>
+              <false/>
+          </dict>
+          </plist>
+          EOF
+      - name: Flutter build ipa
+        script: |
+          flutter build ipa \
+            --release \
+            --export-options-plist=/tmp/exportOptions.plist
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
-                         # publishing:
-                #   app_store_connect:
-                #     api_key: $CM_APP_STORE_CONNECT_API_KEY
-                #     key_id: $CM_APP_STORE_CONNECT_API_KEY_ID
-                #     issuer_id: $CM_APP_STORE_CONNECT_ISSUER_ID
-                #     submit_to_testflight: true
-                #     submit_to_app_store: false
+    publishing:
+      app_store_connect:
+        api_key: $CM_APP_STORE_CONNECT_API_KEY
+        key_id: $CM_APP_STORE_CONNECT_API_KEY_ID
+        issuer_id: $CM_APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+        submit_to_app_store: false
 
   android-workflow:
     name: Android Workflow
